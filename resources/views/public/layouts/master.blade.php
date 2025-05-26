@@ -48,8 +48,8 @@
     @include('public.components.modals.service-partner-modal')
     @include('public.layouts.partials.footer')
 
-    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
-            class="bi bi-arrow-up-short"></i></a>
+    {{-- <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a> --}}
 
     <div id="preloader"></div>
 
@@ -62,7 +62,7 @@
     <script src="{{ asset('frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
 
     <!-- Template Main JS File -->
-    <script src="{{ asset('frontend/js/jquery.min.js')}}"></script>
+    <script src="{{ asset('frontend/js/jquery.min.js') }}"></script>
     @vite('resources/public_assets/js/app.js')
 
     @stack('scripts')
@@ -78,23 +78,74 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
-        @if(Session::has('message'))
-        var type = "{{ Session::get('alert-type','info') }}"
-        switch (type) {
-            case 'info':
-                toastr.info(" {{ Session::get('message') }} ");
-                break;
-            case 'success':
-                toastr.success(" {{ Session::get('message') }} ");
-                break;
-            case 'warning':
-                toastr.warning(" {{ Session::get('message') }} ");
-                break;
-            case 'error':
-                toastr.error(" {{ Session::get('message') }} ");
-                break;
-        }
+        @if (Session::has('message'))
+            var type = "{{ Session::get('alert-type', 'info') }}"
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+                case 'success':
+                    toastr.success(" {{ Session::get('message') }} ");
+                    break;
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
+            }
         @endif
+    </script>
+
+
+    <script>
+        // Function to animate counters
+        function animateCounter(counter) {
+            const target = +counter.getAttribute('data-to');
+            const increment = target / 200; // Speed of counting
+
+            let currentCount = 0;
+            const updateCount = () => {
+                currentCount += increment;
+                if (currentCount < target) {
+                    counter.innerText = Math.ceil(currentCount);
+                    setTimeout(updateCount, 20);
+                } else {
+                    counter.innerText = target + '+';
+                }
+            };
+            updateCount();
+        }
+
+        // IntersectionObserver to detect when counters are in view
+        const counters = document.querySelectorAll('.counter strong');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    animateCounter(counter);
+                    observer.unobserve(counter); // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the element is visible
+        });
+
+        counters.forEach(counter => {
+            observer.observe(counter); // Start observing each counter
+        });
+    </script>
+
+    <script>
+        $(document).ready(function() {
+            $('.toggle-submenu').on('click', function(e) {
+                e.preventDefault();
+                const $submenu = $(this).closest('li').find('.nav_dropdown').first();
+                $submenu.slideToggle(200);
+                const currentText = $(this).text().trim();
+                $(this).text(currentText === '+' ? '−' : '+');
+            });
+        });
     </script>
 
 </body>

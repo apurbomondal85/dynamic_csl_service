@@ -14,6 +14,7 @@ class ContactController extends Controller
      */
     public function index()
     {
+
         return view('public.pages.contact.index');
     }
 

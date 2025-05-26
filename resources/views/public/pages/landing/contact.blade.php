@@ -1,4 +1,4 @@
-<section id="contact" class="contact my-5">
+{{-- <section id="contact" class="contact my-5">
       <h3 class="main-title text-center">
         Contact
       </h3>
@@ -44,4 +44,39 @@
         </div>
       </div>
       </div>
+    </section> --}}
+
+<div>
+    <section class="style_2" style="padding: 75px 0;">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-12">
+                    <div class="card custom-card position-relative text-start"
+                        style="background: #2c7eb2;border-radius: 15px;">
+                        <div class="align-items-center row d-flex justify-content-between">
+                            <div class="col-lg-8 text-center text-lg-start">
+                                <h2 class="text-white contact-text">
+                                    It's easy to get started. Contact us
+                                    <span class="secondary_text">today</span>
+                                </h2>
+                            </div>
+                            <div class="col-lg-4 text-lg-end text-center">
+                                <a target="_blank" href="mailto:info@cslservicebd.com"
+                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 my-1"
+                                    style="background: #4b7bec;">
+                                    <!-- <i class="fas fa-envelope"></i> -->
+                                    Mail Now
+                                </a>
+                                <a style="background: #A0CB43" target="_blank" href="tel:+8801893115555"
+                                    class="anim_fill_btn btn btn_fill_rounded secondary_bg rounded-0 my-1">
+                                    <!-- <i class="fas fa-phone-volume"></i>  -->
+                                    Call Now
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
+</div>

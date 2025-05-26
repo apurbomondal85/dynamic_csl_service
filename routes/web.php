@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Public\WhyController;
 use App\Http\Controllers\Public\BlogController;
 use App\Http\Controllers\Public\HomeController;
 use App\Http\Controllers\Public\AboutController;
@@ -9,9 +10,12 @@ use App\Http\Controllers\Public\CareerController;
 use App\Http\Controllers\Public\ClientController;
 use App\Http\Controllers\Public\ContactController;
 use App\Http\Controllers\Public\GalleryController;
+use App\Http\Controllers\Public\PartnerController;
 use App\Http\Controllers\Public\ProjectController;
 use App\Http\Controllers\Public\ServiceController;
+use App\Http\Controllers\Public\SolutionController;
 use App\Http\Controllers\Public\SubscriptionController;
+use App\Http\Controllers\Public\WhyController as enter;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +40,20 @@ Route::name('public.')->as('public.')->group(function () {
     // About
     Route::get('/mission-vission', [AboutController::class, 'index'])->name('about');
     Route::get('/our-team', [AboutController::class, 'team'])->name('team');
-    Route::get('/our-clients', [ClientController::class,'index'])->name('clients');
-    Route::get('/client/show', [ClientController::class,'show'])->name('client.show');
+
+    // clients
+    Route::get('/our-clients', [ClientController::class, 'index'])->name('clients');
+    Route::get('/client/show', [ClientController::class, 'show'])->name('client.show');
+
+    // why
+    Route::get('/why', [WhyController::class, 'index'])->name('why');
+
+    // partner
+    Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
+
+    // solution
+    Route::get('/solution', [SolutionController::class, 'index'])->name('solution');
+
 
     // Services
     Route::get('/services', [ServiceController::class, 'index'])->name('services');
@@ -45,7 +61,7 @@ Route::name('public.')->as('public.')->group(function () {
     // Career
     Route::get('/career', [CareerController::class, 'index'])->name('careers');
     Route::get('/career-details/{career}', [CareerController::class, 'details'])->name('careerDetails');
-    Route::get('/job-apply', [ApplyController::class,'index'])->name('apply');
+    Route::get('/job-apply', [ApplyController::class, 'index'])->name('apply');
 
     //Subscription
     Route::get('/subscriptions', [SubscriptionController::class, 'index'])->name('subscription');
