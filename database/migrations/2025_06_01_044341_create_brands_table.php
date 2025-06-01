@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class() extends Migration {
+return new class extends Migration
+{
     /**
      * Run the migrations.
      *
@@ -12,16 +13,17 @@ return new class() extends Migration {
      */
     public function up()
     {
-        Schema::create('testimonials', function (Blueprint $table) {
+        Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('avatar')->nullable();
             $table->string('designation')->nullable();
             $table->string('company')->nullable();
+            $table->string('url')->nullable();
             $table->text('message')->nullable();
-            $table->boolean('is_featured')->default(false);
-            $table->boolean('is_active')->default(true);
-            $table->foreignId('operator_id');
+            $table->boolean('is_featured')->default(0);
+            $table->boolean('is_active')->default(1);
+            $table->unsignedBigInteger('operator_id')->default(1);
             $table->timestamps();
         });
     }
@@ -33,6 +35,6 @@ return new class() extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('testimonials');
+        Schema::dropIfExists('brands');
     }
 };
