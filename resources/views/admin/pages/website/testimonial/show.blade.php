@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', 'Testimonnial Details')
+@section('title', 'Testimonial Details')
 
 @section('content')
 
@@ -11,14 +11,14 @@
 <div class="content-wrapper">
     <div class="content-header d-flex justify-content-start">
         <div class="d-block">
-            <h4 class="content-title">{{ strtoupper(__('Testimonnial Details')) }}</h4>
+            <h4 class="content-title">{{ strtoupper(__('Testimonial Details')) }}</h4>
         </div>
         {!! \App\Library\Html::linkBack(route('admin.testimonial.index')) !!}
     </div>
 
     <div class="row">
 
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card shadow-sm">
                 <div class="card-body">
 
@@ -96,7 +96,7 @@
         </div>
 
         @if($testimonial->message)
-            <div class="col-md-8">
+            <div class="col-md-7">
                 <div class="card shadow-sm">
                     <div class="card-body py-4">
                         <div class="text-left">

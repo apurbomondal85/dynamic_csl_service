@@ -1,54 +1,56 @@
 @extends('admin.layouts.master')
 
-@section('title', __('New Project'))
+@section('title', __('Update solution'))
 
 @section('content')
     <div class="content-wrapper">
 
         <div class="content-header d-flex justify-content-start">
             <div class="d-block">
-                <h4 class="content-title">{{ strtoupper(__('New Project')) }}</h4>
+                <h4 class="content-title">{{ strtoupper(__('Update solution')) }}</h4>
             </div>
-            {!! \App\Library\Html::linkBack(route('admin.project.index')) !!}
+            {!! \App\Library\Html::linkBack(route('admin.solution.index')) !!}
         </div>
 
-        <form method="post" id="create-form" action="{{ route('admin.project.create') }}" enctype="multipart/form-data">
+        <form method="post" id="create-form" action="{{ route('admin.solution.update', $solution->id) }}"
+            enctype="multipart/form-data">
             @csrf
+
+
             <div class="card col-md-12 mb-4" style="box-shadow: rgb(0, 92, 45) 0px 2px 5px !important;">
                 <div class="card-body">
 
                     <div class="row pt-4">
                         <div class="col-md-6">
-
                             <div class="form-group row @error('name') error @enderror">
                                 <label class="col-sm-3 col-form-label required">{{ __('Title') }}</label>
                                 <div class="col-sm-9">
-                                    <input type="text" class="form-control" name="name" value="{{ old('name') }}"
-                                        placeholder="{{ __('Write Project Title') }}" required>
+                                    <input type="text" class="form-control" name="name"
+                                        value="{{ old('name', $solution->name) }}"
+                                        placeholder="{{ __('Write solution Title') }}" required>
                                     @error('name')
                                         <p class="error-message">{{ $message }}</p>
                                     @enderror
                                 </div>
                             </div>
-
-                            <div class="form-group row @error('url') error @enderror">
-                                <label class="col-sm-3 col-form-label">{{ __('URL') }}</label>
+                            <div class="form-group row @error('name') error @enderror">
+                                <label class="col-sm-3 col-form-label required">{{ __('Enter Your Color') }}</label>
                                 <div class="col-sm-9">
-                                    <input type="url" class="form-control" name="url" id="url"
-                                        value="{{ old('url') }}" placeholder="{{ __('Ex: https://example.com') }}">
-                                    @error('url')
+                                    <input type="text" class="form-control" name="color"
+                                        value="{{ old('name', $solution->color) }}" placeholder="{{ __('Color Name') }}"
+                                        required>
+                                    @error('name')
                                         <p class="error-message">{{ $message }}</p>
                                     @enderror
-                                    <span class="text-danger" id="error-url"></span>
-
                                 </div>
                             </div>
-
-                            <div class="form-group row @error('date') error @enderror">
-                                <label class="col-sm-3 col-form-label">{{ __('Date') }}</label>
+                            <div class="form-group row @error('description_title') error @enderror">
+                                <label class="col-sm-3 col-form-label required">{{ __('Description Title') }}</label>
                                 <div class="col-sm-9">
-                                    <input type="date" class="form-control" name="date" value="{{ old('date') }}">
-                                    @error('date')
+                                    <input type="text" class="form-control" name="description_title"
+                                        value="{{ old('name', $solution->description_title) }}"
+                                        placeholder="{{ __('Write Description Title') }}" required>
+                                    @error('description_title')
                                         <p class="error-message">{{ $message }}</p>
                                     @enderror
                                 </div>
@@ -68,17 +70,47 @@
                                                     type="button"><i class="fas fa-upload"></i> Browse</button>
                                             </span>
                                         </div>
-                                        @error('featured_image')
-                                            <p class="error-message">{{ $message }}</p>
-                                        @enderror
-                                        <div class="display-input-image d-none">
-                                            <img src="{{ asset(\App\Library\Enum::NO_IMAGE_PATH) }}" alt="Preview Image" />
+                                        <div class="display-input-image @if ($solution->featured_image == null) d-none @endif">
+                                            <img src="{{ $solution->getImage() }}" alt="Preview Image" />
                                             <button type="button" class="btn btn-sm btn-outline-danger file-upload-remove"
                                                 title="Remove">x</button>
                                         </div>
+                                        @error('featured_image')
+                                            <p class="error-message">{{ $message }}</p>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
+
+
+                            <div class="form-group row @error('banner_image') error @enderror">
+                                <label class="col-sm-3 col-form-label required">Featured Image</label>
+                                <div class="col-sm-9">
+                                    <div class="file-upload-section">
+                                        <input name="banner_image" type="file" class="form-control d-none"
+                                            allowed="png,gif,jpeg,jpg">
+                                        <div class="input-group col-xs-12">
+                                            <input type="text" class="form-control file-upload-info" disabled=""
+                                                readonly placeholder="Size: 200x200 and max 500kB">
+                                            <span class="input-group-append">
+                                                <button class="file-upload-browse btn btn-outline-secondary"
+                                                    type="button"><i class="fas fa-upload"></i> Browse</button>
+                                            </span>
+                                        </div>
+                                        <div class="display-input-image @if ($solution->banner_image == null) d-none @endif">
+                                            <img src="{{ $solution->bannerImage() }}" alt="Preview Image" />
+                                            <button type="button" class="btn btn-sm btn-outline-danger file-upload-remove"
+                                                title="Remove">x</button>
+                                        </div>
+                                        @error('banner_image')
+                                            <p class="error-message">{{ $message }}</p>
+                                        @enderror
+                                    </div>
+                                </div>
+                            </div>
+
+
+
 
                             <div class="form-group row @error('is_featured') error @enderror" style="align-items: center">
                                 <label class="col-sm-3 col-form-label">Is Featured</label>
@@ -86,7 +118,7 @@
                                     <div class="form-check form-check-success @error('is_featured') error @enderror">
                                         <label class="form-check-label">
                                             <input type="checkbox" class="form-check-input" name="is_featured"
-                                                value="1" @checked(old('is_featured'))>
+                                                value="1" @checked(old('is_featured', $solution->is_featured))>
                                             <i class="input-helper"></i></label>
                                         @error('is_featured')
                                             <p class="error-message">{{ $message }}</p>
@@ -103,7 +135,7 @@
                                     for="short_description">{{ __('Short Description') }}</label>
                                 <div class="col-sm-9">
                                     <textarea type="text" name="short_description" class="form-control"
-                                        placeholder="{{ __('Write Short Description') }}" rows="4">{{ old('short_description') }}</textarea>
+                                        placeholder="{{ __('Write Short Description') }}" rows="4">{{ old('short_description', $solution->short_description) }}</textarea>
                                     @error('short_description')
                                         <p class="error-message">{{ $message }}</p>
                                     @enderror
@@ -113,7 +145,7 @@
                             <div class="form-group row @error('description') error @enderror">
                                 <label class="col-sm-3 col-form-label" for="description">{{ __('Description') }}</label>
                                 <div class="col-sm-9">
-                                    <textarea class="form-control" id="summernote" name="description" autofocus="autofocus">{{ old('description') }}</textarea>
+                                    <textarea class="form-control" id="summernote" name="description" autofocus="autofocus">{{ old('description', $solution->description) }}</textarea>
                                     @error('description')
                                         <p class="error-message">{{ $message }}</p>
                                     @enderror
@@ -122,31 +154,23 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-
-            <div class="card col-md-12" style="box-shadow: rgb(0, 92, 45) 0px 2px 5px !important;">
-                <div class="card-body">
-
-                    @include('admin.pages.partial.create')
 
                     <div class="row">
                         <div class="modal-footer justify-content-center col-md-12">
 
                             {!! \App\Library\Html::btnReset() !!}
 
-                            <button type="submit" class="btn mr-3 my-3 btn2-secondary d-none" id="subBtnFinal">
+                            <button type="submit" class="btn mr-3 my-3 btn2-secondary" id="subBtnFinal">
                                 <i class="fas fa-save"></i> Save
                             </button>
 
-                            <span class="btn mr-3 my-3 btn2-secondary" id="subBtn">
-                                <i class="fas fa-save"></i> Save
-                            </span>
 
                         </div>
                     </div>
+
                 </div>
             </div>
+
         </form>
 
     </div>
@@ -156,6 +180,5 @@
 @include('admin.assets.summernote-text-editor')
 
 @push('scripts')
-    @vite('resources/admin_assets/js/partial/create.js')
-    @vite('resources/admin_assets/js/project/create.js')
+    @vite('resources/admin_assets/js/solution/create.js')
 @endpush

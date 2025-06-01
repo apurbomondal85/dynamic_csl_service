@@ -52,11 +52,15 @@ Route::name('public.')->as('public.')->group(function () {
     Route::get('/partner', [PartnerController::class, 'index'])->name('partner');
 
     // solution
-    Route::get('/solution', [SolutionController::class, 'index'])->name('solution');
+    // Route::get('/solution', [SolutionController::class, 'index'])->name('solution');
 
 
     // Services
-    Route::get('/services', [ServiceController::class, 'index'])->name('services');
+
+
+    Route::get ('/solution/{id}', [SolutionController::class, 'index'])->name('solution');
+
+
 
     // Career
     Route::get('/career', [CareerController::class, 'index'])->name('careers');

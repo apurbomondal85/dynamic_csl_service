@@ -20,6 +20,7 @@ return new class () extends Migration {
             $table->text('description')->nullable();
             $table->enum('client_type', array_keys(Enum::getClientType()))->comment('partner/client');
             $table->boolean('is_featured')->default(false);
+             $table->string('url')->nullable();
             $table->boolean('is_active')->default(true);
             $table->foreignId('operator_id');
             $table->timestamps();

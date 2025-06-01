@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin\ClientPartner;
+namespace App\Http\Requests\Admin\Brand;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,12 +14,13 @@ class CreateRequest extends FormRequest
     public function rules()
     {
         return [
-            'client_type' => ['required'],
             'name'        => ['required', 'string', 'max:255'],
-            'description' => ['nullable', 'string', 'max:255'],
+            'designation' => ['nullable', 'string', 'max:255'],
+            'company'     => ['nullable', 'string', 'max:255'],
             'is_featured' => ['nullable'],
             'url' => ['nullable'],
-            'logo'        => ['nullable', 'file', 'max:500', 'mimes:jpeg,jpg,png,gif'],
+            'message'     => ['nullable', 'string', 'max:255'],
+            'avatar'      => ['nullable', 'file', 'max:500', 'mimes:jpeg,jpg,png,gif'],
         ];
     }
 }
