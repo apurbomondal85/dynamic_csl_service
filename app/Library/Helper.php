@@ -38,6 +38,27 @@ class Helper
         return $path . '/' . $file_name;
     }
 
+     public static function bannerImage($image, $path, $w = null, $h = null)
+    {
+        $file_name = time() . rand(111, 999) . '.' . $image->getClientOriginalExtension();
+        $destination_path = public_path($path);
+
+        if(!is_dir($destination_path)) {
+            mkdir($destination_path, 0777, true);
+        }
+
+        $image_file = Image::make($image->getRealPath());
+
+        if($w && $h) {
+            $image_file->resize($w, $h, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        }
+        $image_file->save($destination_path . '/' . $file_name);
+
+        return $path . '/' . $file_name;
+    }
+
     public static function getPublicUrl($url)
     {
         return url($url);

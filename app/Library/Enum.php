@@ -32,8 +32,11 @@ class Enum
     public const CLUB_FEATURE_IMAGE = 'storage/club';
     public const NEWS_FEATURE_IMAGE = 'storage/news';
     public const PROJECT_FEATURE_IMAGE = 'storage/project';
+    public const SOLUTION_FEATURE_IMAGE = 'storage/solution';
+    public const SOLUTION_BANNER_IMAGE = 'storage/solution';
     public const ATTACHMENT_FILE_DIR = 'storage/attachment';
     public const TESTIMONIAL_AVATAR_DIR = 'storage/testimonial';
+    public const BRAND_AVATAR_DIR = 'storage/Brand';
     public const CLIENT_PARTNER_LOGO_DIR = 'storage/client_partner';
 
     //Email Settings

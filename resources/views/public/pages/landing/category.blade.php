@@ -165,271 +165,34 @@
         <section class="style_2 home-top brand-padding" style="padding-bottom: 50px;">
             <div class="container">
                 <div class="service_slide row justify-content-center">
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-anchor="#example-anchor" data-aos-offset="500">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #4117B7; border-radius: 15px; border-top: 3px solid #4117B7;border-bottom: 3px solid #4117B7;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Software Development">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-1.png') }}"
-                                        alt="Software Development">
+
+                    @foreach ($solutions as $key => $value)
+                        <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
+                            data-aos-anchor="#example-anchor" data-aos-offset="500">
+                            <div class="card p-3 service_card"
+                                style="--service-color: {{ $value->color }}; border-radius: 15px; border-top: 3px solid {{ $value->color }};border-bottom: 3px solid {{ $value->color }};">
+                                <div class="card-header custom_header px-0 py-2">
+                                    <div class="home_demo_icon" title="{{ $value->name }}">
+                                        <img style="width: 75px;"
+                                            src="{{ asset($value->featured_image) }}"
+                                            alt="Software Development">
+                                    </div>
+                                    <h2 class="text-center my-3 mb-0" title="{{ $value->name }}">
+                                        <a class="service-title"
+                                            href="{{ route('public.solution', $value->id) }}">Software Development</a>
+                                    </h2>
                                 </div>
-                                <h2 class="text-center my-3 mb-0" title="Software Development">
-                                    <a class="service-title" href="#">Software Development</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#" class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #4117B7;">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #0e9aff; border-radius: 15px; border-top: 3px solid #0e9aff;border-bottom: 3px solid #0e9aff;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Automated IP Surveillance &amp; CCTV">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-3.png') }}"
-                                        alt="Automated IP Surveillance &amp; CCTV">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Automated IP Surveillance &amp; CCTV">
-                                    <a class="service-title" href="#">Automated IP Surveillance &amp; CCTV
+                                <div class="card-body p-0 text-center p_item">
+                                    <a href="{{ route('public.solution', $value->id) }}"
+                                        class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
+                                        style="background: {{ $value->color }};">
+                                        VIEW DETAILS
                                     </a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#" class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #0e9aff">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-duration="500">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #5d21d2; border-radius: 15px; border-top: 3px solid #5d21d2;border-bottom: 3px solid #5d21d2;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Structure Local Area Network (LAN)">
-                                    <img style="width: 70px;" src="{{ asset('frontend/images/category/card-2.png') }}"
-                                        alt="Structure Local Area Network (LAN)">
                                 </div>
-                                <h2 class="text-center my-3 mb-0" title="Structure Local Area Network (LAN)">
-                                    <a class="service-title" href="#">Structure Local Area Network (LAN)</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#" class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #5d21d2">
-                                    VIEW DETAILS
-                                </a>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
 
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #ff4949; border-radius: 15px; border-top: 3px solid #ff4949;border-bottom: 3px solid #ff4949;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Interactive Display">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-4.png') }}"
-                                        alt="Interactive Display">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Interactive Display">
-                                    <a class="service-title" href="#">Interactive Display </a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#" class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #ff4949">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #4117B7; border-radius: 15px; border-top: 3px solid #4117B7;border-bottom: 3px solid #4117B7;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Fiber Optic Backbone">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-5.png') }}"
-                                        alt="Fiber Optic Backbone">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Fiber Optic Backbone">
-                                    <a class="service-title" href="#">Fiber Optic Backbone</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="Fiber-Optic-Backbone.html"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #4117B7">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #000094; border-radius: 15px; border-top: 3px solid #000094;border-bottom: 3px solid #000094;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Smart Wireless">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-6.png') }}"
-                                        alt="Smart Wireless">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Smart Wireless">
-                                    <a class="service-title" href="#">Smart Wireless</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#" class="anim_fill_btn btn btn_fill_rounded rounded-0 mt-2"
-                                    style="background: #000094">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #005d9a; border-radius: 15px; border-top: 3px solid #005d9a;border-bottom: 3px solid #005d9a;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Smart IP PABX">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-7.png') }}"
-                                        alt="Smart IP PABX">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Smart IP PABX">
-                                    <a class="service-title" href="#">Smart IP PABX</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #005d9a">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #99c33d; border-radius: 15px;border-top: 3px solid #99c33d;border-bottom: 3px solid #99c33d;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="AI Based Data Center">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-8.png') }}"
-                                        alt="AI Based Data Center">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="AI Based Data Center">
-                                    <a class="service-title" href="#">AI Based Data Center</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #99c33d">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #22c37d; border-radius: 15px;border-top: 3px solid #22c37d;border-bottom: 3px solid #22c37d;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Automated Smart Classroom / Lab">
-                                    <img style="width: 75px;" src="{{ asset('frontend/images/category/card-9.png') }}"
-                                        alt="Automated Smart Classroom / Lab">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Automated Smart Classroom / Lab">
-                                    <a class="service-title" href="#">Automated Smart Classroom / Lab</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #22c37d">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #ff4949; border-radius: 15px;border-top: 3px solid #ff4949;border-bottom: 3px solid #ff4949;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Enterprise Server &amp; Storage">
-                                    <img style="width: 75px;"
-                                        src="{{ asset('frontend/images/category/card-10.png') }}"
-                                        alt="Enterprise Server &amp; Storage">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Enterprise Server &amp; Storage">
-                                    <a class="service-title" href="#">Enterprise Server &amp; Storage </a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #ff4949">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #5d21d2; border-radius: 15px;border-top: 3px solid #5d21d2;border-bottom: 3px solid #5d21d2;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Smart Public Addressing (PA) System">
-                                    <img style="width: 75px;"
-                                        src="{{ asset('frontend/images/category/card-11.png') }}"
-                                        alt="Smart Public Addressing (PA) System">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Smart Public Addressing (PA) System">
-                                    <a class="service-title" href="#">Smart Public Addressing (PA) System
-                                    </a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #5d21d2">VIEW
-                                    DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-xxl-3 col-lg-4 col-md-6 mb-4 aos-init aos-animate" data-aos="fade-up"
-                        data-aos-delay="300">
-                        <div class="card p-3 service_card"
-                            style="--service-color: #22c37d; border-radius: 15px;border-top: 3px solid #22c37d;border-bottom: 3px solid #22c37d;">
-                            <div class="card-header custom_header px-0 py-2">
-                                <div class="home_demo_icon" title="Building Management System (BMS)">
-                                    <img style="width: 75px;"
-                                        src="{{ asset('frontend/images/category/card-5.png') }}"
-                                        alt="Building Management System (BMS)">
-                                </div>
-                                <h2 class="text-center my-3 mb-0" title="Building Management System (BMS)">
-                                    <a class="service-title" href="#">Building Management System (BMS)</a>
-                                </h2>
-                            </div>
-                            <div class="card-body p-0 text-center p_item">
-                                <a href="#"
-                                    class="anim_fill_btn btn btn_fill_rounded rounded-0 secondary_bg mt-2"
-                                    style="background: #22c37d">
-                                    VIEW DETAILS
-                                </a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
             </div>

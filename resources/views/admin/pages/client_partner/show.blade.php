@@ -87,7 +87,7 @@
                         @endif
 
                         @if($user_role->hasPermission('' . $client_type . '_delete'))
-                            <button class="btn btn-sm btn-danger"
+                            <button class="btn btn-sm btn-danger mt-1"
                                 onclick="confirmFormModal('{{ route('admin.' . $client_type . '.delete.api', $client->id) }}', 'Confirmation', 'Are you sure to delete operation?')"><i
                                 class="fas fa-trash-alt"></i> Delete
                             </button>

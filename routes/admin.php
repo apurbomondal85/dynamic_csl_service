@@ -10,24 +10,28 @@ use App\Http\Controllers\Admin\NewsController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\AssetController;
+use App\Http\Controllers\Admin\BrandController;
 use App\Http\Controllers\Admin\EmailController;
 use App\Http\Controllers\Admin\EventController;
 use App\Http\Controllers\Admin\CareerController;
 use App\Http\Controllers\Admin\CommonController;
 use App\Http\Controllers\Admin\ConfigController;
 use App\Http\Controllers\Admin\NoticeController;
+use App\Http\Controllers\Admin\ReportController;
 use App\Http\Controllers\Admin\ExpenseController;
+use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\ProfileController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\BusinessController;
+use App\Http\Controllers\Admin\SolutionController;
 use App\Http\Controllers\Admin\CommitteeController;
 use App\Http\Controllers\Admin\ActivityLogController;
 use App\Http\Controllers\Admin\PricingPlanController;
-use App\Http\Controllers\Admin\TransactionController;
-use App\Http\Controllers\Admin\EmailTemplateController;
-use App\Http\Controllers\Admin\GalleryController;
 use App\Http\Controllers\Admin\TestimonialController;
+use App\Http\Controllers\Admin\TransactionController;
+use App\Http\Controllers\Admin\ClientPartnerController;
+use App\Http\Controllers\Admin\EmailTemplateController;
 
 /*
 |--------------------------------------------------------------------------
@@ -313,7 +317,6 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('/members/{member}/change/active-status', 'changeMemberActiveStatus')->name('member.update_active_status')->middleware('permission:team_update_status');
         Route::post('/members/{member}/change/feature-status', 'changeMemberFeatureStatus')->name('member.update_feature_status')->middleware('permission:team_update_status');
         Route::post('/members/{member}/delete-api', 'memberDeleteApi')->name('member.delete.api')->middleware('permission:committee_member_delete');
-
     });
     // End Website/Frontend Module
 
@@ -437,7 +440,26 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::post('/{projectImage}/delete-project-image', 'destroyProjectImage')->name('deleteProjectImage')->middleware('permission:project_image_delete');
     });
 
-    // Project Module
+
+    // Solution Module
+    Route::group(['prefix' => 'solutions', 'as' => 'solution.', 'controller' => SolutionController::class], function () {
+
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store')->name('store');
+        Route::get('/{solution}/update', 'edit')->name('edit');
+        Route::post('/{solution}/update', 'update')->name('update');
+        Route::get('/{solution}/show', 'show')->name('show');
+        Route::post('/{solution}/change-status/{type}', 'changeStatus')->name('change_status');
+        Route::post('/{solution}/delete', 'destroy')->name('delete');
+
+        Route::get('/{solution}/create-solution-image', 'createSolutionImage');
+        Route::post('/{solution}/store-solution-image', 'storeSolutionImage');
+        Route::post('/{solutionImage}/delete-solution-image', 'destroySolutionImage');
+    });
+
+
+    // Gallery Module
     Route::group(['prefix' => 'gallery', 'as' => 'gallery.', 'controller' => GalleryController::class], function () {
 
         Route::get('/', 'index')->name('index')->middleware('permission:gallery_index');
@@ -465,6 +487,19 @@ Route::group(['middleware' => ['role:admin']], function () {
         Route::get('/{testimonial}/show', 'show')->name('show')->middleware('permission:testimonial_show');
         Route::post('/{testimonial}/change-status-api/{type}', 'changeStatusApi')->name('change_status.api')->middleware('permission:testimonial_update_status');
         Route::post('/{testimonial}/delete-api', 'destroy')->name('delete.api')->middleware('permission:testimonial_delete');
+    });
+
+    // Brand Module
+    Route::group(['prefix' => 'brands', 'as' => 'brand.', 'controller' => BrandController::class], function () {
+
+        Route::get('/', 'index')->name('index');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/create', 'store');
+        Route::get('/{brand}/update', 'edit')->name('update');
+        Route::post('/{brand}/update', 'update');
+        Route::get('/{brand}/show', 'show')->name('show');
+        Route::post('/{brand}/change-status-api/{type}', 'changeStatusApi')->name('change_status.api');
+        Route::post('/{brand}/delete-api', 'destroy')->name('delete.api');
     });
 
     // Client Module

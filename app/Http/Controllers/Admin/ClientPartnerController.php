@@ -47,6 +47,8 @@ class ClientPartnerController extends Controller
 
     public function store(CreateRequest $request)
     {
+
+       
         $result = $this->client_service->store($request->validated());
 
         $client_type = 'partner';

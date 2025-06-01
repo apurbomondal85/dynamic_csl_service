@@ -1,6 +1,6 @@
 @extends('admin.layouts.master')
 
-@section('title', ucwords($type))
+@section('title', 'Brand')
 
 @section('content')
 
@@ -13,7 +13,7 @@
 
         <div class="content-header d-flex justify-content-between">
             <div class="d-block">
-                <h4 class="content-title">{{ strtoupper(__($type)) }}</h4>
+                <h4 class="content-title">{{ strtoupper(__('Brand')) }}</h4>
             </div>
         </div>
 
@@ -21,8 +21,8 @@
             <div class="card-body">
                 <div id="filterArea" class="d-inline-flex justify-content-start">
                     <ul class="nav nav-pills nav-pills-success" role="tablist">
-                        @php $active_status = \App\Library\Enum::STATUS_ACTIVE; @endphp
-                        @foreach (\App\Library\Enum::getStatus() as $key => $value)
+                        @php $active_status = \App\Library\Enum::TESTIMONIAL_ACTIVE; @endphp
+                        @foreach (\App\Library\Enum::getTestimonialStatus() as $key => $value)
                             <li class="nav-item">
                                 <a class="nav-link tab-menu {{ $active_status == $key ? 'active' : '' }}" href="#"
                                     onclick="filterStatus({{ $key }})">{{ $value }}</a>
@@ -30,17 +30,14 @@
                         @endforeach
                     </ul>
                 </div>
-                <input type="hidden" id="status" value="{{ $active_status }}">
+                <input type="hidden" id="brandStatus" value="{{ $active_status }}">
 
-                <input type="hidden" id="type" value="{{ $type }}">
-
-                <table class="table table-bordered no-footer dtr-inline" id="clientPartnerDataTable">
+                <table class="table table-bordered no-footer dtr-inline" id="brandDataTable">
                     <thead>
                         <tr>
                             <th>#</th>
                             <th>Name</th>
-                            <th>Image</th>
-                            <th>Description</th>
+                            <th>Avatar</th>
                             <th>Is Featured</th>
                             <th>Operator</th>
                             <th width="100px">Action</th>
@@ -70,5 +67,5 @@
 @include('admin.assets.dt-buttons-export')
 
 @push('scripts')
-    @vite('resources/admin_assets/js/client_partner/index.js')
+    @vite('resources/admin_assets/js/website/brand/index.js')
 @endpush

@@ -20,60 +20,19 @@
                         </span>
                     </h2>
                     <div class="row pt-3">
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="BDCOM">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-1.png') }}" alt="BDCOM"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="Cisco">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-2.png') }}" alt="Cisco"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="Paloalto">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-3.png') }}" alt="Paloalto"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="Prose">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-4.png') }}" alt="Prose"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="Rosenberger">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-5.png') }}" alt="Rosenberger"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
-                        <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
-                            <a href="#" title="Sophos">
-                                <div class="card_2 shadow-sm mb-3 border-left p-2"
-                                    style="border-left: 2px solid #00568d;background:rgb(157 201 216 / 17%)">
-                                    <img src="{{ asset('frontend/images/partner/partner-6.png') }}" alt="Sophos"
-                                        class="img-fluid" loading="lazy">
-                                </div>
-                            </a>
-                        </div>
+
+
+                         @foreach ($partners as $key => $value)
+                    <div class="col-6 col-lg-2 col-md-3 mb-4 aos-init aos-animate" data-aos="zoom-in-up">
+                        <a href="{{ $value->url }}" title="{{ $value->name ?? 'Partner' }}">
+                            <div class="card_2 shadow-sm mb-3 border-left p-2"
+                                style="border-left: 2px solid #00568d; background: rgb(157 201 216 / 17%)">
+                                <img src="{{ asset($value->logo) }}" alt="{{ $value->name ?? 'Partner' }}"
+                                    class="img-fluid" loading="{{ $value->name ?? 'Partner' }}">
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
                     </div>
                 </div>
             </section>

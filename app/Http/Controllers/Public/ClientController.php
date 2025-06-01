@@ -11,7 +11,9 @@ class ClientController extends Controller
     public function index()
     {
         return view('public.pages.about.clients', [
-            'clients' => Client::getClient(),
+            'clients' => Client::where('is_featured', 1)
+                ->where('client_type', 'client')->get(),
+
         ]);
     }
 

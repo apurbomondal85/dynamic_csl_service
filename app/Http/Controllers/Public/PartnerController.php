@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Public;
 
+use App\Models\Client;
 use App\Mail\ContactMail;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
@@ -14,8 +15,10 @@ class PartnerController extends Controller
      */
     public function index()
     {
-        return view('public.pages.partner.index');
+        $partners = Client::where('is_featured', 1)
+            ->where('client_type', 'partner')
+            ->get();
+
+        return view('public.pages.partner.index', compact('partners'));
     }
-
-
 }

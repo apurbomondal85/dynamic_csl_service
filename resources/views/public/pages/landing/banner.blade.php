@@ -34,7 +34,7 @@
                     </p>
                     <div class="col-xl-3 col-lg-2 col-md-3 col-6 mb-3 mt-2"
                         style="font-size: inline-block;margin: auto;display: grid;">
-                        <a href="#"
+                        <a href="{{ route('public.about') }}"
                             class="anim_fill_btn btn btn_fill_rounded primary_bg rounded-0 about-btn">
                             See More
                             <!-- <i class="bx bx-right-arrow-alt"></i> -->

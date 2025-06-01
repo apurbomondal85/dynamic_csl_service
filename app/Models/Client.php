@@ -15,6 +15,7 @@ class Client extends Model
     protected $fillable = [
         'name',
         'logo',
+        'url',
         'description',
         'client_type',
         'is_featured',
